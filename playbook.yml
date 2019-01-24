@@ -69,6 +69,7 @@
     - certificates
     - irods-icat
     - irods-runtime
+    - irods-audit-plugin
     - irods-microservices
     - composable-resources
   tags:

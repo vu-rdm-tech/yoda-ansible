@@ -1,0 +1,8 @@
+---
+# copyright Utrecht University
+
+- name: Ensure iRODS runtime is installed
+  package:
+    name: irods-rule-engine-plugin-audit-amqp-4.2.4-1
+    state: present
+  when: not ansible_check_mode
