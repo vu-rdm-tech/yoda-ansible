@@ -1,7 +1,7 @@
 ---
 # copyright Utrecht University
 
-- name: Ensure iRODS runtime is installed
+- name: Ensure iRODS auditing plugin is installed
   package:
     name: irods-rule-engine-plugin-audit-amqp-4.2.4-1
     state: present
