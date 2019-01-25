@@ -1,0 +1,51 @@
+# Install Docker CE and dependencies
+sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+sudo yum install docker-ce
+
+sudo usermod -a -G docker $USER
+
+# Reboot
+
+# Start Docker
+sudo systemctl start docker
+
+# Download and run iRODS audit docker image
+docker pull irods/irods_audit_elk_stack
+docker run -p 8080:15672 -p 5672:5672 -p 8181:5601 -p 9200:9200 -dit irods/irods_audit_elk_stack
+
+# Open firewall for Kibana
+sudo firewall-cmd --permanent --add-port=8181/tcp
+sudo firewall-cmd --reload
+
+# Add iRODS aufit plugin to server_config.json under rule_engines
+            {
+                "instance_name": "irods_rule_engine_plugin-audit_amqp-instance",
+                "plugin_name": "irods_rule_engine_plugin-audit_amqp",
+                "plugin_specific_configuration" : {
+                     "amqp_location" : "ANONYMOUS@localhost:5672",
+                     "amqp_options" : "",
+                     "amqp_topic" : "audit_messages",
+                     "pep_regex_to_match" : "audit_.*"
+                 }
+            },
+
+# And add "Audit_" under rule_engine_namespaces
+    "rule_engine_namespaces": [
+        "",
+        "audit_"
+    ],
+
+# Browse to Kibana
+http://portal.yoda.test:8181
+
+# Type "irods_audit" in the index pattern field and click next step
+# Select "@timestamp" in the time filter field name and create index pattern
+
+
