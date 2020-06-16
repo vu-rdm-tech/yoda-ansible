@@ -65,6 +65,8 @@
       dest: '{{ landingpages_root }}/static/css/bootstrap.min.css'
     - src: 'css/uu.css'
       dest: '{{ landingpages_root }}/static/css/uu.css'
+    - src: 'css/vu.css'
+      dest: '{{ landingpages_root }}/static/css/vu.css'
     - src: 'img/logo.svg'
       dest: '{{ landingpages_root }}/static/img/logo.svg'
     - src: 'img/logo_footer.svg'
