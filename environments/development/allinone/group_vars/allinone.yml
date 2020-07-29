@@ -87,7 +87,6 @@ irods_resources:
       - dev002
 
 # iRODS rulesets
-extra_rulesets:
 
 
 # Mail notifications
