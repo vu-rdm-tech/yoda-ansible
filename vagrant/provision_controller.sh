@@ -18,7 +18,7 @@ fi
 rm -rf ~/yoda
 
 # Clone yoda.
-git clone https://github.com/vu-rdm-tech/yoda-ansible.git
+git clone https://github.com/vu-rdm-tech/yoda-ansible.git yoda
 cd ~/yoda
 git checkout release-1.6
 
